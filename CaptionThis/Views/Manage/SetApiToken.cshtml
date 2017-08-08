@@ -1,0 +1,32 @@
+﻿@model CaptionThis.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "API Token Information";
+}
+
+<h2>@ViewData["Title"].</h2>
+
+<h4>An API token is needed to use the service.  <br/><br/>You can obtain one by subscribing to the service in your Azure account <a href="https://videobreakdown.portal.azure-api.net/developer">here on the Video Indexer site</a>.</h4>
+<hr/>
+<form asp-action="SetApiToken">
+    <div class="form-horizontal">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="ApiToken" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ApiToken" class="form-control" />
+                <span asp-validation-for="ApiToken" class="text-danger"></span>
+            </div>
+        </div>
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CaptionThis.Models.Video>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Public)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VttUrl)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Language)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Public)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.VttUrl))
+                    {
+                        <a href="@item.VttUrl">WebVTT File (right click to save)</a>
+                    }
+                </td>
+                <td>
+                    @if (item.State == "Processed")
+                    {
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn-bracketed">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
